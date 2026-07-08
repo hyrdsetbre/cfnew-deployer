@@ -154,7 +154,7 @@ async function 部署(数据) {
 }
 
 async function 补全部署默认值(数据) {
-  if (!数据?.credentials?.email || !数据?.credentials?.key) return 数据;
+  if (!数据?.credentials?.accountId || !数据?.credentials?.apiToken) return 数据;
   const 输出 = { ...数据 };
   let zones = null;
   if (!输出.accountId) {
@@ -251,7 +251,7 @@ function 提取列表(result, warnings, label) {
 }
 
 function 校验部署参数(数据) {
-  if (!数据?.credentials?.email || !数据?.credentials?.key) throw new Error('缺少 Cloudflare 邮箱或 Global API Key');
+  if (!数据?.credentials?.accountId || !数据?.credentials?.apiToken) throw new Error('缺少 Cloudflare Account ID 或 API Token');
   if (!数据.accountId) throw new Error('缺少 Account ID');
   if (数据.deployMode === 'update' && !String(数据.projectName || '').trim()) throw new Error('更新现有项目时必须选择项目名称');
   if (数据.deployMode === 'update') return;
@@ -593,8 +593,7 @@ async function 运行Wrangler(args, 凭据, accountId, 工作目录 = process.cw
       cwd: 工作目录,
       env: {
         ...process.env,
-        CLOUDFLARE_EMAIL: 凭据.email,
-        CLOUDFLARE_API_KEY: 凭据.key,
+        CLOUDFLARE_API_TOKEN: 凭据.apiToken,
         CLOUDFLARE_ACCOUNT_ID: accountId
       },
       stdio: ['ignore', 'pipe', 'pipe']
@@ -631,8 +630,7 @@ async function 调用接口(凭据, 路径, 选项 = {}) {
 async function 调用原始接口(凭据, 路径, 选项 = {}) {
   const 地址 = 路径.startsWith('http') ? 路径 : `${接口地址}${路径}`;
   const headers = {
-    'X-Auth-Email': 凭据.email,
-    'X-Auth-Key': 凭据.key,
+    'Authorization': `Bearer ${凭据.apiToken}`,
     ...(选项.headers || {})
   };
   let body = 选项.body;

@@ -12,7 +12,7 @@
         <div>
           <p class="eyebrow">Cloudflare 部署软件</p>
           <h1>云端部署器</h1>
-          <p class="summary">填邮箱和 Global API Key，点一次自动完成 Pages、随机 UUID、随机 KV 和随机项目名；域名绑定可选，子域名自动随机。</p>
+          <p class="summary">填 Account ID 和 API Token，点一次自动完成 Pages、随机 UUID、随机 KV 和随机项目名；域名绑定可选，子域名自动随机。</p>
         </div>
         <div class="status-card">
           <span class="status-dot"></span>
@@ -25,17 +25,17 @@
         <div class="panel-head">
           <div>
             <h2>1. 登录 Cloudflare</h2>
-            <p>只需要邮箱和 Global API Key。登录后再进入部署页。</p>
+            <p>只需要 Account ID 和 API Token。登录后再进入部署页。</p>
           </div>
         </div>
         <div class="grid two">
           <label>
-            <span>邮箱</span>
-            <input id="email" autocomplete="username" placeholder="you@example.com" />
+            <span>Account ID</span>
+            <input id="accountId" autocomplete="username" placeholder="Cloudflare Account ID" />
           </label>
           <label>
-            <span>Global API Key</span>
-            <input id="key" type="password" autocomplete="current-password" placeholder="Cloudflare Global API Key" />
+            <span>API Token</span>
+            <input id="apiToken" type="password" autocomplete="current-password" placeholder="Cloudflare API Token" />
           </label>
         </div>
         <div class="quick-action">

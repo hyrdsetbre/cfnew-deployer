@@ -173,10 +173,10 @@ async function loadResources() {
 }
 
 function getCredentials() {
-  const email = $('email').value.trim();
-  const key = $('key').value.trim();
-  if (!email || !key) throw new Error('请填写 Cloudflare 邮箱和 Global API Key');
-  return { email, key };
+  const accountId = $('accountId').value.trim();
+  const apiToken = $('apiToken').value.trim();
+  if (!accountId || !apiToken) throw new Error('请填写 Cloudflare Account ID 和 API Token');
+  return { accountId, apiToken };
 }
 
 function collectQuickPayload() {
